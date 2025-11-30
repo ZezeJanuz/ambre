@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>joyeux anniversaire bb &lt;333</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Comic Sans MS", "Comic Sans", system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(120deg, #ff00ff, #ffff00, #00ffff, #ff69b4);
+            background-size: 400% 400%;
+            animation: bgMove 10s infinite alternate;
+            color: #ffffff;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.8;
+            font-size: 26px;
+        }
+
+        .floating-hearts span {
+            position: absolute;
+            animation: floatUp 8s linear infinite;
+        }
+
+        .floating-hearts span:nth-child(1) { left: 5%;  animation-duration: 7s; }
+        .floating-hearts span:nth-child(2) { left: 20%; animation-duration: 9s; }
+        .floating-hearts span:nth-child(3) { left: 40%; animation-duration: 6s; }
+        .floating-hearts span:nth-child(4) { left: 60%; animation-duration: 10s; }
+        .floating-hearts span:nth-child(5) { left: 80%; animation-duration: 8s; }
+        .floating-hearts span:nth-child(6) { left: 90%; animation-duration: 11s; }
+
+        @keyframes floatUp {
+            0% { top: 110%; transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translateY(-50vh) scale(1.4) rotate(15deg); }
+            100% { top: -20%; transform: translateY(-80vh) scale(0.8) rotate(-30deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 16px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+            padding: 22px 20px;
+            border: 6px double #ffb6c1;
+            box-shadow: 0 0 25px rgba(255, 20, 147, 0.9);
+            text-align: center;
+            position: relative;
+        }
+
+        .card::before {
+            content: "❤❤❤";
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px #ff1493;
+        }
+
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            color: #ffe4ff;
+            text-shadow: 0 0 8px #ff1493;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+            text-shadow: 0 0 10px #ff00ff, 0 0 5px #ffff00;
+            animation: wobble 1.5s infinite;
+        }
+
+        @keyframes wobble {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg) scale(1.02); }
+            50% { transform: rotate(2deg) scale(1.04); }
+            75% { transform: rotate(-1deg) scale(1.02); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            color: #fff0f5;
+        }
+
+        .subtitle span {
+            background: rgba(255, 192, 203, 0.4);
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px dashed #ffffff;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 3px solid #ffffff;
+            background: radial-gradient(circle, #ff69b4, #ff0000);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 14px;
+            color: #ffffff;
+            text-transform: lowercase;
+            animation: pulsing 0.9s infinite;
+        }
+
+        .btn-emoji {
+            animation: spin 1.5s infinite linear;
+            display: inline-block;
+        }
+
+        @keyframes pulsing {
+            0% { transform: scale(1); box-shadow: 0 0 8px #fff; }
+            50% { transform: scale(1.08); box-shadow: 0 0 18px #ff1493; }
+            100% { transform: scale(1); box-shadow: 0 0 8px #fff; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .hidden-message {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            background: rgba(255, 255, 255, 0.22);
+            border-radius: 18px;
+            padding: 0 12px;
+            margin-top: 10px;
+            border: 2px dotted #ffeff7;
+        }
+
+        .hidden-message.open {
+            max-height: 700px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .hidden-message p {
+            font-size: 1rem;
+            color: #fffafa;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: left;
+            text-shadow: 0 0 4px #ff1493;
+        }
+
+        .highlight {
+            font-weight: 900;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .flowers {
+            font-style: italic;
+            color: #ffffe0;
+        }
+
+        .signature {
+            margin-top: 4px;
+            font-size: 0.9rem;
+            color: #ffe4e1;
+            text-align: right;
+        }
+
+        .corner-heart {
+            position: absolute;
+            font-size: 1.8rem;
+            animation: heartbeat 1s infinite;
+        }
+
+        .corner-heart.top-left { top: -10px; left: -2px; }
+        .corner-heart.top-right { top: -10px; right: -2px; }
+        .corner-heart.bottom-left { bottom: -10px; left: -2px; }
+        .corner-heart.bottom-right { bottom: -10px; right: -2px; }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .music-hint {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #fff0f5;
+            text-shadow: 0 0 4px #ff1493;
+        }
+
+        audio {
+            margin-top: 6px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!-- cœurs qui volent PARTOUT -->
+<div class="floating-hearts">
+    <span>💖</span>
+    <span>❤️‍🔥</span>
+    <span>💕</span>
+    <span>💘</span>
+    <span>💗</span>
+    <span>💞</span>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="corner-heart top-left">💖</div>
+        <div class="corner-heart top-right">💖</div>
+        <div class="corner-heart bottom-left">💖</div>
+        <div class="corner-heart bottom-right">💖</div>
+
+        <div class="marquee">
+            <span>joyeux anniversaire bb &lt;333 • je t'aime très fort • oui ce site est gênant exprès • &lt;333 • </span>
+        </div>
+
+        <h1>joyeux anniversaire bb &lt;333</h1>
+        <p class="subtitle">
+            <span>j'avoue je voulais pas trop t'écrire une lettre mais bon...</span>
+        </p>
+
+        <button class="btn" id="revealBtn">
+            <span class="btn-emoji">💌</span>
+            <span class="btn-text">clique là stp</span>
+        </button>
+
+        <div class="hidden-message" id="hiddenMessage">
+            <p>
+                joyeux anniversaire bb &lt;333
+            </p>
+
+            <p>
+                j'avoue je voulais pas trop t'écrire une lettre parce que je sais pas faire
+                et aussi parce qu'on aime pas trop, aussi je pouvais pas faire de playlist
+                parce que t'en as déjà une... Mais jvoulais quand même te dire que je suis
+                vraiment heureuse d'être ta copine parce que t'es la perfection incarnée
+                (pas une exagération) et aussi parce que je ne me suis jamais sentie aussi
+                à l'aise avec qui que ce soit.
+            </p>
+
+            <p>
+                jsuis un peu amoureuse de toi j'avoue (sans blague). J'aurais préféré te dire
+                tout ça en vrai mais tu me connais je suis impatiente...
+            </p>
+
+            <p >
+                épouse moi ou jsp sois normale
+            </p>
+
+            <p class="flowers">
+                PS (on dirait vrmt une lettre) : Je t'ai commandé des fleurs du coup si tu
+                reçois un appel après les cours c'est normal c'est le livreur (désolée pour l'épreuve
+                que c'est de répondre au téléphone).
+            </p>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<script>
+    const btn = document.getElementById("revealBtn");
+    const msg = document.getElementById("hiddenMessage");
+    const btnText = document.querySelector(".btn-text");
+
+    btn.addEventListener("click", () => {
+        msg.classList.toggle("open");
+        if (msg.classList.contains("open")) {
+            btnText.textContent = "reclique si tu assumes pas";
+        } else {
+            btnText.textContent = "clique là stp";
+        }
+    });
+</script>
+</body>
+</html>
